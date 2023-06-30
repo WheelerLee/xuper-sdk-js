@@ -10,6 +10,7 @@ service Xchain {
     rpc GetBalanceDetail (AddressBalanceStatus) returns (AddressBalanceStatus) {}
     rpc GetFrozenBalance(AddressStatus) returns (AddressStatus) {}
     rpc GetBlockChainStatus (BCStatus) returns (BCStatus) {}
+    rpc GetConsensusStatus (ConsensusStatRequest) returns (ConsensusStatus) {}
     rpc PreExec (InvokeRPCRequest) returns (InvokeRPCResponse) {}
     rpc PreExecWithSelectUTXO(PreExecWithSelectUTXORequest) returns (PreExecWithSelectUTXOResponse) {}
     rpc PostTx(TxStatus) returns (CommonReply) {}
@@ -445,6 +446,24 @@ message BCStatus {
     UtxoMeta utxoMeta = 5;
     // Branch info
     repeated string branchBlockid = 6;
+}
+
+// Consensus status
+message ConsensusStatus {
+  Header header = 1;
+  // version
+  string version = 2;
+  // consensus name
+  string consensus_name = 3;
+  // consensus start height
+  string start_height = 4;
+  // consensus validators info
+  string validators_info = 5;
+}
+
+message ConsensusStatRequest {
+  Header header = 1;
+  string bcname = 2;
 }
 
 message BCTipStatus {

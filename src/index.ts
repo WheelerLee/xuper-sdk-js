@@ -62,6 +62,14 @@ export default class XuperSDK implements XuperSDKInterface {
         return Requests.getStatus(node, body);
     }
 
+    getConsensusStatus(): Promise<any> {
+        const node = this.options.node;
+        const body = {
+            bcname: this.options.chain
+        };
+        return Requests.getConsensusStatus(node, body);
+    }
+
     getBlockChains(): Promise<any> {
         const node = this.options.node;
         return Requests.getBlockChains(node, {});

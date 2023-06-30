@@ -55,6 +55,15 @@ export const getStatus = (node: string, body: any): Promise<any> => {
     }
 };
 
+export const getConsensusStatus = (node: string, body: any): Promise<any> => {
+    if (client) {
+        return gRPCPromise('GetConsensusStatus', body);
+    } else {
+        const target = `${node}/v1/get_consensusstatus`;
+        return postRequest(target, body);
+    }
+};
+
 export const getBalance = (node: string, body: any): Promise<any> => {
     if (client) {
         return new Promise<any>((resolve, reject) =>
