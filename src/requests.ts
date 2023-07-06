@@ -55,6 +55,15 @@ export const getStatus = (node: string, body: any): Promise<any> => {
     }
 };
 
+export const getSystemStatus = (node: string, body: any): Promise<any> => {
+    if (client) {
+        return gRPCPromise('GetSystemStatus', body);
+    } else {
+        const target = `${node}/v1/get_sysstatus`;
+        return postRequest(target, body);
+    }
+};
+
 export const getConsensusStatus = (node: string, body: any): Promise<any> => {
     if (client) {
         return gRPCPromise('GetConsensusStatus', body);
