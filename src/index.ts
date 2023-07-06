@@ -10,7 +10,7 @@ import {Cryptography, Language, Strength} from './constants';
 import {toHex, hexToBase64, isBrowser} from './utils';
 import Account from './account';
 import Transaction from './transaction';
-import Contract from './Contract';
+import Contract from './contract';
 import {
     Options,
     AccountModel,
@@ -60,6 +60,14 @@ export default class XuperSDK implements XuperSDKInterface {
             bcname: this.options.chain
         };
         return Requests.getStatus(node, body);
+    }
+
+    getSystemStatus(viewOption: number): Promise<any> {
+        const node = this.options.node;
+        const body = {
+            view_option: viewOption
+        };
+        return Requests.getSystemStatus(node, body);
     }
 
     getConsensusStatus(): Promise<any> {
