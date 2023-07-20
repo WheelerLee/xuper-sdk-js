@@ -699,4 +699,6 @@ export default class XuperSDK implements XuperSDKInterface {
 
 export * from './plugins';
 
+export * from './utils';
+
 export {Cryptography, Language, Strength};
